@@ -1,6 +1,6 @@
 # Tabletop Simulator Custom Deck Builder
 
-- Upload local files and create an image that can be used when making a custom deck.
+Use multiple image files and create a grid image that can be used with importing custom deck for TTS.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ Install all dependencies
 pnpm install
 ```
 
-Start app
+Start application
 
 ```sh
 pnpm start
@@ -22,4 +22,25 @@ pnpm start
 
 ---
 
-You can upload multiple files and download the file thereafter.
+## How to use
+
+- Upload multiple image files using the "Upload Images" button
+- Images automatically adjust to MTG card proportions (5:7 ratio)
+- Adjust grid dimensions (rows/columns) as needed
+- Use "Auto Arrange" to automatically position images in order
+- Manually adjust image positions using the position input in the image list
+- Download the final grid as a high-resolution PNG image
+
+## Limitations
+
+As of writing, TTS only allows up to 69 cards (70th card is the hidden card).
+
+If you're playing Commander, you'll have to make 2 separate grid images and import the two and meld them as one deck.
+
+## Adding custom decks to TTS
+
+Instructions can be found here: https://kb.tabletopsimulator.com/custom-content/custom-deck/
+
+## Contributions
+
+All contributions are welcome. :)

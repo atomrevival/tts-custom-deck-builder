@@ -328,7 +328,6 @@ export const App: React.FC = () => {
                         <h3 className="font-semibold text-blue-800 mb-2">How to use:</h3>
                         <ul className="text-sm text-blue-700 space-y-1">
                             <li>• Upload multiple image files using the "Upload Images" button</li>
-                            <li>• Toggle "Use Original Image Size" to maintain image quality and readability</li>
                             <li>• Images automatically adjust to MTG card proportions (5:7 ratio)</li>
                             <li>• Adjust grid dimensions (rows/columns) as needed</li>
                             <li>• Use "Auto Arrange" to automatically position images in order</li>
