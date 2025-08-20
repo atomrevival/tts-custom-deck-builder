@@ -9,21 +9,17 @@ interface ImageData {
     position: number;
 }
 
-interface GridSize {
-    rows: number;
-    cols: number;
-}
-
 interface CellDimensions {
     width: number;
     height: number;
 }
 
 const MTG_RATIO: number = 7/5; // height/width = 1.4
+const MAX_CARD_NUMBER: number = 70;
 
 export const App: React.FC = () => {
     const [images, setImages] = useState<ImageData[]>([]);
-    const [gridSize, setGridSize] = useState<GridSize>({ rows: 7, cols: 10 });
+    const gridSize = { rows: 7, cols: 10 };
     const [customWidth, setCustomWidth] = useState<number>(300);
 
     // MTG card ratio is 2.5:3.5 (width:height) or approximately 5:7
@@ -43,6 +39,10 @@ export const App: React.FC = () => {
         const files = Array.from(event.target.files || []);
 
         files.forEach((file: File, index: number) => {
+            if (index + 1 > MAX_CARD_NUMBER) {
+                return;
+            }
+
             if (file.type.startsWith('image/')) {
                 const reader = new FileReader();
                 reader.onload = (e: ProgressEvent<FileReader>) => {
@@ -158,14 +158,6 @@ export const App: React.FC = () => {
         setImages(prev => prev.map((img, index) => ({ ...img, position: index })));
     };
 
-    const handleGridRowsChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        setGridSize(prev => ({ ...prev, rows: parseInt(event.target.value) || 1 }));
-    };
-
-    const handleGridColsChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        setGridSize(prev => ({ ...prev, cols: parseInt(event.target.value) || 1 }));
-    };
-
     const handleCustomWidthChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setCustomWidth(parseInt(event.target.value));
     };
@@ -198,30 +190,6 @@ export const App: React.FC = () => {
                                 accept="image/*"
                                 onChange={handleImageUpload}
                                 className="hidden"
-                            />
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                            <label className="text-sm text-gray-600">Rows:</label>
-                            <input
-                                type="number"
-                                value={gridSize.rows}
-                                onChange={handleGridRowsChange}
-                                className="w-16 px-2 py-1 border border-gray-300 rounded"
-                                min="1"
-                                max="20"
-                            />
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                            <label className="text-sm text-gray-600">Cols:</label>
-                            <input
-                                type="number"
-                                value={gridSize.cols}
-                                onChange={handleGridColsChange}
-                                className="w-16 px-2 py-1 border border-gray-300 rounded"
-                                min="1"
-                                max="20"
                             />
                         </div>
 
